@@ -158,20 +158,30 @@ def summarise_papers(papers, api_key):
     for i, p in enumerate(papers, 1):
         paper_text += f"\n[{i}] {p['title']}\nSource: {p['source']} | {p['date']}\nURL: {p['link']}\nAbstract: {p['summary']}\n"
 
-    prompt = f"""You are helping a researcher who works in public opinion research, polling, and survey methodology.
+    prompt = f"""You are a research curator for a researcher working across the following areas:
 
-Below are {len(papers)} recent papers/articles fetched from academic RSS feeds.
-Please:
-1. Select the 8-12 most relevant and interesting ones for someone working in online research methods, public opinion polling, and survey methodology.
-2. Group them into 2-3 short thematic sections (e.g. "Survey Methods", "Public Opinion & Polling", "Digital & Online Methods").
-3. For each paper write 2-3 sentences explaining what it is about and why it is worth reading.
-4. Format your response as clean HTML (using <h2>, <h3>, <p>, <a> tags). Make paper titles clickable links using the URLs provided.
-5. End with a one-paragraph "Editor's pick" highlighting the single most interesting paper.
+- Online research methodologies and the use of crowdsourced or online samples for research
+- Data quality in online and crowdsourced samples (e.g. attention, satisficing, bots, fraud)
+- Public opinion, polling, and political attitudes
+- Survey methodology (design, mode effects, non-response, weighting, questionnaire design)
+- Synthetic data generation, validation, and applications (including use cases in market research, social science, and survey research)
+- Computational and digital social science methods
+- Validity and utility of online samples compared to probability samples
+
+From the {len(papers)} papers below, please:
+1. Select the 8-12 most relevant and interesting ones. Cast a wide net — include papers that
+   partially touch on these areas or offer methodological insights applicable to them, not just
+   papers squarely in the field.
+2. Group them into 2-3 thematic sections with clear headings (e.g. "Online Samples & Data Quality",
+   "Survey Methods & Design", "Synthetic Data", "Public Opinion & Polling").
+3. For each paper write 2-3 sentences: what it does, and why it matters for this researcher's work.
+4. Format your response as clean HTML using <h2>, <h3>, <p>, <a> tags. Make titles clickable links.
+5. End with a one-paragraph "Editor's Pick" highlighting the single most interesting or useful paper.
 
 Papers:
 {paper_text}
 
-Return only the HTML content (no <html> or <body> tags needed), no markdown.
+Return only the HTML content (no <html> or <body> tags), no markdown.
 """
 
     message = client.messages.create(
