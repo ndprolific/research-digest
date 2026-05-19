@@ -1,0 +1,21 @@
+name: Weekly Digest
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # Every Monday 8am UTC (9am UK time)
+  workflow_dispatch:        # Also lets you trigger it manually
+
+jobs:
+  run-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: { python-version: '3.11' }
+      - run: pip install anthropic feedparser requests
+      - run: python weekly_digest.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EMAIL_FROM:        ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:          ${{ secrets.EMAIL_TO }}
+          EMAIL_PASS:        ${{ secrets.EMAIL_PASS }}
