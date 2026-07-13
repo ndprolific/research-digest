@@ -13,7 +13,7 @@ feeds:
   - "https://rss.arxiv.org/rss/stat.ME"                              # arXiv: Statistics - Methodology
   - "https://rss.arxiv.org/rss/stat.AP"                              # arXiv: Statistics - Applications
   - "https://osf.io/preprints/socarxiv/feed/"                        # SocArXiv — social sciences preprints
-  - "https://osf.io/preprints/psyarxiv/feed/"                        # PsyArXiv — psychology preprints
+  - "https://osf.io/preprints/psyarxiv/feed/"                        # PsyArXiv — psychology 
 
   # CORE JOURNALS — PUBLIC OPINION & SURVEY METHODS
   - "https://academic.oup.com/rss/site_6317/advanceAccess_6317.xml"  # Public Opinion Quarterly (POQ)
